@@ -1,6 +1,6 @@
 [project]
 name = "finetrainers-ui"
-version = "0.8.0"
+version = "0.10.0"
 dependencies = [
     "gradio",
     "torch>=2.4.1"

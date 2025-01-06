@@ -15,7 +15,7 @@ class GeneralTab(Tab):
     
         try:
             with self.settings_column:
-                inputs = self.update_form(self.config)
+                inputs = self.update_form()
                 self.components = OrderedDict(inputs)
                 children = []
                 for child in self.settings_column.children:

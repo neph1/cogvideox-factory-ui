@@ -17,7 +17,7 @@ class LegacyTrainingTab(Tab):
 
         try:
             with self.settings_column:
-                self.components = OrderedDict(self.update_form(self.config))
+                self.components = OrderedDict(self.update_form())
                 for i in range(len(self.settings_column.children)):
                     keys = list(self.components.keys())
                     properties[keys[i]] = self.settings_column.children[i]

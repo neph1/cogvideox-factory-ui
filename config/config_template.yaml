@@ -18,13 +18,15 @@ gpu_ids: '0'
 gradient_accumulation_steps: 4
 gradient_checkpointing: true
 id_token: afkx
+layerwise_upcasting_modules: [none, transformer]
+layerwise_upcasting_granularity: [pytorch_layer, diffusers_layer]
+layerwise_upcasting_storage_dtype: [float8_e4m3fn, float8_e5m2]
 lora_alpha: 128
 lr: 0.0001
 lr_num_cycles: 1
 lr_scheduler: ['linear', 'cosine', 'cosine_with_restarts', 'polynomial', 'constant', 'constant_with_warmup']
 lr_warmup_steps: 400
 max_grad_norm: 1.0
-mixed_precision: [bf16, fp16, 'no']
 model_name: ltx_video
 nccl_timeout: 1800
 num_validation_videos: 0
@@ -37,14 +39,14 @@ rank: 128
 report_to: none
 seed: 42
 target_modules: to_q to_k to_v to_out.0
-text_encoder_dtype: [bf16, fp16, fp32]
-text_encoder_2_dtype: [bf16, fp16, fp32]
-text_encoder_3_dtype: [bf16, fp16, fp32]
+text_encoder_dtype: [bf16, fp16, fp32, fp8]
+text_encoder_2_dtype: [bf16, fp16, fp32, fp8]
+text_encoder_3_dtype: [bf16, fp16, fp32, fp8]
 tracker_name: finetrainers
 train_steps: 3000
 training_type: lora
 use_8bit_bnb: false
-vae_dtype: [bf16, fp16, fp32]
+vae_dtype: [bf16, fp16, fp32, fp8]
 validation_epochs: 0
 validation_prompt_separator: ':::'
 validation_prompts: ''

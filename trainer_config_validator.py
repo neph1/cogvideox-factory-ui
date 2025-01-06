@@ -29,7 +29,6 @@ class TrainerValidator:
             'lr_scheduler',
             'lr_warmup_steps',
             'max_grad_norm',
-            'mixed_precision',
             'model_name',
             'nccl_timeout',
             'optimizer',

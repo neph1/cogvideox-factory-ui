@@ -20,7 +20,16 @@ class RunTrainer:
 
         # Model arguments
         model_cmd = f"--model_name {config.get('model_name')} \
-        --pretrained_model_name_or_path {config.get('pretrained_model_name_or_path')}"
+        --pretrained_model_name_or_path {config.get('pretrained_model_name_or_path')} \
+        --text_encoder_dtype {config.get('text_encoder_dtype')} \
+        --text_encoder_2_dtype {config.get('text_encoder_2_dtype')} \
+        --text_encoder_3_dtype {config.get('text_encoder_3_dtype')} \
+        --vae_dtype {config.get('vae_dtype')} "
+        
+        if config.get('layerwise_upcasting_modules') != 'none':
+            model_cmd += f"--layerwise_upcasting_modules {config.get('layerwise_upcasting_modules')} \
+            --layerwise_upcasting_storage_dtype {config.get('layerwise_upcasting_storage_dtype')} \
+            --layerwise_upcasting_granularity {config.get('layerwise_upcasting_granularity')} "
 
         # Dataset arguments
         dataset_cmd = f"--data_root {config.get('data_root')} \
@@ -30,11 +39,7 @@ class RunTrainer:
         --video_resolution_buckets {config.get('video_resolution_buckets')} \
         --caption_dropout_p {config.get('caption_dropout_p')} \
         --caption_dropout_technique {config.get('caption_dropout_technique')} \
-        {'--precompute_conditions' if config.get('precompute_conditions') else ''} \
-        --text_encoder_dtype {config.get('text_encoder_dtype')} \
-        --text_encoder_2_dtype {config.get('text_encoder_2_dtype')} \
-        --text_encoder_3_dtype {config.get('text_encoder_3_dtype')} \
-        --vae_dtype {config.get('vae_dtype')} "
+        {'--precompute_conditions' if config.get('precompute_conditions') else ''} "
 
         # Dataloader arguments
         dataloader_cmd = f"--dataloader_num_workers {config.get('dataloader_num_workers')}"
@@ -45,7 +50,6 @@ class RunTrainer:
         # Training arguments
         training_cmd = f"--training_type {config.get('training_type')} \
         --seed {config.get('seed')} \
-        --mixed_precision {config.get('mixed_precision')} \
         --batch_size {config.get('batch_size')} \
         --train_steps {config.get('train_steps')} \
         --rank {config.get('rank')} \
